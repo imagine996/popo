@@ -1,0 +1,50 @@
+name = "popo" # 项目名称
+type = "pages"
+build.command = "npm run build"
+build.output_dir = "dist"
+build.publish = "dist"
+build.concurrency = 10
+
+# 部署优化
+compatibility_date = "2025-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 日志和监控
+[logflare]
+enabled = true
+
+# D1 数据库绑定
+[[d1_databases]]
+binding = "DB" # 环境变量名
+database_name = "your-database-name" # 替换为你的D1数据库名
+database_id = "your-database-id" # 替换为你的D1数据库ID
+preview_database_id = "your-preview-database-id" # 替换为你的预览环境D1数据库ID
+
+# 环境变量
+[vars]
+# 全局环境变量
+APP_NAME = "OiiOii AI"
+
+[env.production]
+JWT_SECRET = "your-production-secret-key" # 生产环境JWT密钥（建议使用Cloudflare Secrets管理）
+ENVIRONMENT = "production"
+
+[env.development]
+JWT_SECRET = "development-secret-key" # 开发环境JWT密钥
+ENVIRONMENT = "development"
+
+# 本地开发配置
+[dev]
+port = 8788
+local_protocol = "http"
+inspector_port = 9229
+
+# 边缘缓存配置
+[cloudflare-pages]
+cache_control = "public, max-age=3600, stale-while-revalidate=86400"
+edge_cache_ttl = 86400
+
+# 函数配置
+[functions]
+# 启用函数日志
+node_compat = true
