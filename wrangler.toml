@@ -14,11 +14,12 @@ compatibility_flags = ["nodejs_compat"]
 enabled = true
 
 # D1 数据库绑定
+# 注意：需要先在Cloudflare Dashboard创建D1数据库，然后替换下面的占位符
 [[d1_databases]]
-binding = "DB" # 环境变量名
-database_name = "your-database-name" # 替换为你的D1数据库名
-database_id = "your-database-id" # 替换为你的D1数据库ID
-preview_database_id = "your-preview-database-id" # 替换为你的预览环境D1数据库ID
+binding = "DB" # 环境变量名，在代码中通过env.DB访问
+database_name = "popo-database" # 数据库名称（创建时设置）
+database_id = "YOUR_D1_DATABASE_ID" # 替换为实际的D1数据库ID
+preview_database_id = "YOUR_PREVIEW_D1_DATABASE_ID" # 替换为预览环境D1数据库ID
 
 # 环境变量
 [vars]
