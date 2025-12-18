@@ -11,8 +11,8 @@
     "deploy": "wrangler pages deploy dist",
     "deploy:dev": "wrangler pages deploy dist --env development",
     "preview:wrangler": "wrangler pages dev dist",
-    "db:migrate": "wrangler d1 execute your-database-id --local --file=schema.sql",
-    "db:migrate:remote": "wrangler d1 execute your-database-id --remote --file=schema.sql"
+    "db:migrate": "wrangler d1 execute popo-database --local --file=schema.sql",
+    "db:migrate:remote": "wrangler d1 execute popo-database --remote --file=schema.sql"
   },
   "dependencies": {
     "axios": "^1.13.2",
