@@ -12,7 +12,7 @@ export async function onRequestGet(context) {
   
   // 查询任务状态
   const task = await env.DB.prepare(
-    "SELECT id, task_type, status, prompt, result, created_at, completed_at FROM ai_tasks WHERE id = ? AND user_id = ?"
+    "SELECT id, task_type, status, prompt, result_url, created_at FROM ai_tasks WHERE id = ? AND user_id = ?"
   ).bind(taskId, userId).first();
   
   if (!task) {

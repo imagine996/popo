@@ -6,7 +6,7 @@ export async function onRequestGet(context) {
   
   // 查询用户的任务历史
   const tasks = await env.DB.prepare(
-    "SELECT id, task_type, status, prompt, result, created_at, completed_at FROM ai_tasks WHERE user_id = ? ORDER BY created_at DESC"
+    "SELECT id, task_type, status, prompt, result_url, created_at FROM ai_tasks WHERE user_id = ? ORDER BY created_at DESC"
   ).bind(userId).all();
   
   return successResponse({ tasks: tasks.results });

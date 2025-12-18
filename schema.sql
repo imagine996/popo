@@ -2,6 +2,8 @@ CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL, -- 存储哈希后的密码
+  email TEXT,
+  name TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
