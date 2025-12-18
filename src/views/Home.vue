@@ -37,8 +37,11 @@ onMounted(() => {
   <div class="home-container">
     <!-- 英雄区域 -->
     <section class="hero-section">
+      <!-- 英雄背景图片 -->
+      <div class="hero-background"></div>
+      
       <div class="hero-content">
-        <h1 class="hero-title">OiiOii AI</h1>
+        <h1 class="hero-title">POPOLILI AI</h1>
         <p class="hero-subtitle">智能、高效、便捷的AI动画生成平台</p>
         <p class="hero-description">
           基于先进的人工智能技术，为您提供高质量的AI动画生成服务，轻松创建专业级动画作品。
@@ -63,8 +66,9 @@ onMounted(() => {
     
     <!-- 特色功能 -->
     <section class="features-section">
-      <h2 class="section-title">核心功能</h2>
-      <div class="features-grid">
+      <div class="content-container">
+        <h2 class="section-title">核心功能</h2>
+        <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">✍️</div>
           <h3 class="feature-title">文本生成动画</h3>
@@ -94,11 +98,13 @@ onMounted(() => {
           </p>
         </div>
       </div>
+      </div>
     </section>
     
     <!-- 使用统计 -->
     <section class="stats-section">
-      <div class="stats-container">
+      <div class="content-container">
+        <div class="stats-container">
         <div class="stat-card">
           <div class="stat-number">10,000+</div>
           <div class="stat-label">活跃用户</div>
@@ -116,16 +122,19 @@ onMounted(() => {
           <div class="stat-label">技术支持</div>
         </div>
       </div>
+      </div>
     </section>
     
     <!-- CTA 区域 -->
     <section class="cta-section">
-      <div class="cta-content">
+      <div class="content-container">
+        <div class="cta-content">
         <h2 class="cta-title">开始您的AI动画之旅</h2>
         <p class="cta-description">
           立即注册，体验强大的AI动画生成服务，释放您的创造力。
         </p>
         <button class="primary-btn" @click="router.push('/register')">免费注册</button>
+      </div>
       </div>
     </section>
   </div>
@@ -137,35 +146,56 @@ onMounted(() => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* 英雄区域 */
 .hero-section {
-  background-color: var(--card-bg);
-  padding: 6rem 2rem;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
   justify-items: center;
-  border-radius: 32px;
-  box-shadow: var(--shadow-md);
+  border-radius: 0;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  margin: 0;
 }
 
 .hero-content {
+  padding: 0 2rem;
   max-width: 600px;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-visual {
+  padding: 0 2rem;
+  z-index: 1;
+  position: relative;
 }
 
 .hero-title {
   font-size: 4rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-blue-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  animation: gradient-shift 4s ease infinite;
+  background-size: 200% 200%;
 }
 
 .hero-subtitle {
@@ -200,26 +230,43 @@ onMounted(() => {
 }
 
 .primary-btn {
-  background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-blue-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
-  box-shadow: 0 8px 24px rgba(10, 186, 181, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .primary-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(10, 186, 181, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(255, 107, 157, 0.5);
 }
 
 .secondary-btn {
   background-color: transparent;
-  color: var(--tiffany-blue);
-  border: 2px solid var(--tiffany-blue);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .secondary-btn:hover {
-  background-color: var(--tiffany-blue);
+  background-color: var(--primary-color);
   color: white;
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 英雄背景图片 */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-image: url('../assets/images/home.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  filter: brightness(0.8);
 }
 
 /* 英雄视觉效果 */
@@ -233,7 +280,7 @@ onMounted(() => {
 .visual-card {
   width: 350px;
   height: 350px;
-  background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-blue-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   border-radius: 32px;
   display: flex;
   flex-direction: column;
@@ -242,7 +289,27 @@ onMounted(() => {
   color: white;
   font-size: 5rem;
   animation: float 3s ease-in-out infinite;
-  box-shadow: 0 16px 48px rgba(10, 186, 181, 0.4);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-color-3));
+  border-radius: 32px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.visual-card:hover::before {
+  opacity: 1;
 }
 
 .visual-text {
@@ -262,10 +329,17 @@ onMounted(() => {
 }
 
 /* 特色功能 */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .features-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 5rem 0;
 }
 
 .section-title {
@@ -278,9 +352,10 @@ onMounted(() => {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(250px, 500px));
   gap: 2rem;
   width: 100%;
+  justify-content: center;
 }
 
 .feature-card {
@@ -298,17 +373,18 @@ onMounted(() => {
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--tiffany-blue);
+  border-color: var(--primary-color);
 }
 
 .feature-icon {
   font-size: 3rem;
-  background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-blue-light));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: pulse 2s infinite;
 }
 
 .feature-title {
@@ -324,9 +400,8 @@ onMounted(() => {
 
 /* 统计数据 */
 .stats-section {
-  background-color: var(--tiffany-blue-pale);
-  padding: 5rem 2rem;
-  border-radius: 32px;
+  padding: 5rem 0;
+  margin: 5rem 0;
 }
 
 .stats-container {
@@ -334,6 +409,11 @@ onMounted(() => {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 3rem;
   justify-items: center;
+  background-color: var(--primary-color-pale);
+  padding: 5rem 2rem;
+  border-radius: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .stat-card {
@@ -355,8 +435,13 @@ onMounted(() => {
 .stat-number {
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--tiffany-blue);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
+  animation: gradient-shift 4s ease infinite;
+  background-size: 200% 200%;
 }
 
 .stat-label {
@@ -367,21 +452,25 @@ onMounted(() => {
 
 /* CTA 区域 */
 .cta-section {
-  background: linear-gradient(135deg, var(--tiffany-blue), var(--tiffany-blue-light));
-  color: white;
-  padding: 6rem 2rem;
-  border-radius: 32px;
-  text-align: center;
-  box-shadow: var(--shadow-lg);
+  padding: 5rem 0;
+  margin: 5rem 0;
 }
 
 .cta-content {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 6rem 2rem;
+  border-radius: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: gradient-shift 4s ease infinite;
+  background-size: 200% 200%;
 }
 
 .cta-title {
@@ -461,7 +550,7 @@ onMounted(() => {
   }
   
   .features-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(200px, 400px));
   }
   
   .stats-container {
@@ -475,7 +564,7 @@ onMounted(() => {
   }
   
   .hero-section {
-    padding: 4rem 1.5rem;
+    padding: 0;
     gap: 2rem;
   }
   

@@ -1,129 +1,81 @@
 :root {
-  /* 蒂芙尼蓝主题色 - 参考oiioii.ai设计风格 */
-  --tiffany-blue: #0abab5;
-  --tiffany-blue-light: #4fd1c7;
-  --tiffany-blue-dark: #08979c;
-  --tiffany-blue-pale: rgba(10, 186, 181, 0.1);
+  /* 黑色主题主色调 - 增强型多巴胺配色 */
+  --primary-color: #ff2a6d;
+  --primary-color-light: #ffd93d;
+  --primary-color-dark: #f95959;
+  --primary-color-pale: rgba(255, 42, 109, 0.15);
   
-  /* 明亮主题 */
-  --text-primary: #2d3748;
-  --text-secondary: #718096;
-  --text-muted: #a0aec0;
-  --card-bg: #ffffff;
-  --bg-color: #f8fcff;
-  --border-color: #e6fffa;
-  --success-color: #38a169;
-  --error-color: #f56565;
-  --warning-color: #ed8936;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+  /* 多巴胺风格辅助色 - 更鲜艳的配色 */
+  --secondary-color: #45b7d1;
+  --accent-color: #a767e5;
+  --accent-color-2: #66bb6a;
+  --accent-color-3: #ffca28;
+  --accent-color-4: #ff7043;
+  --accent-color-5: #26a69a;
+  --accent-color-6: #ec407a;
+  
+  /* 黑色主题基础配色 */
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #9e9e9e;
+  --card-bg: #0a0a0a;
+  --bg-color: #000000;
+  --bg-gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  --border-color: #333333;
+  --success-color: #66bb6a;
+  --error-color: #f95959;
+  --warning-color: #ffca28;
+  --info-color: #45b7d1;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 1);
+  
+  /* 过渡效果 */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* 多巴胺风格渐变色 */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-light) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-6) 100%);
+  --gradient-blue: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color-5) 100%);
+  --gradient-green: linear-gradient(135deg, var(--accent-color-2) 0%, var(--accent-color-3) 100%);
+  --gradient-orange: linear-gradient(135deg, var(--accent-color-4) 0%, var(--primary-color-dark) 100%);
+  --gradient-purple: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color-dark) 100%);
+  
+  /* 增强的背景和边框效果 */
+  --card-border: 1px solid rgba(255, 255, 255, 0.1);
+  --card-glow: 0 0 30px rgba(255, 42, 109, 0.1);
+  --input-focus-glow: 0 0 20px rgba(69, 183, 209, 0.3);
   
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color: var(--text-primary);
-  background-color: var(--bg-color);
+  background: var(--bg-gradient);
   scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 暗色主题 */
-:root.dark-theme {
-  /* 蒂芙尼蓝主题色 - 暗色模式 */
-  --tiffany-blue: #06b6d4;
-  --tiffany-blue-light: #22d3ee;
-  --tiffany-blue-dark: #0891b2;
-  --tiffany-blue-pale: rgba(6, 182, 212, 0.2);
-  
-  /* 暗色主题配色 */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --card-bg: #1e293b;
-  --bg-color: #0f172a;
-  --border-color: #334155;
-  --success-color: #22c55e;
-  --error-color: #ef4444;
-  --warning-color: #f59e0b;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
 
-/* 主题切换按钮样式 */
-.theme-toggle {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
 
-.theme-toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
-.theme-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--border-color);
-  transition: .4s;
-  border-radius: 34px;
-}
 
-.theme-slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
 
-input:checked + .theme-slider {
-  background-color: var(--tiffany-blue);
-}
-
-input:checked + .theme-slider:before {
-  transform: translateX(24px);
-}
-
-/* 主题切换图标 */
-.theme-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.85em;
-  color: var(--text-secondary);
-}
-
-/* 适配暗色主题的滚动条 */
-:root.dark-theme ::-webkit-scrollbar {
+/* 适配黑色主题的滚动条 */
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-:root.dark-theme ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
 
-:root.dark-theme ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 4px;
 }
 
-:root.dark-theme ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
 
@@ -133,18 +85,201 @@ input:checked + .theme-slider:before {
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-gradient);
 }
 
 #app {
   width: 100%;
   min-height: 100vh;
+  background: var(--bg-gradient);
+}
+
+/* 多巴胺风格按钮样式 */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--secondary-color) 100%);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-3) 100%);
+  color: white;
+}
+
+.btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-3) 100%);
+}
+
+/* 多巴胺风格卡片样式 */
+.card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  z-index: -1;
+  margin: -2px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 多巴胺风格输入框样式 */
+.input {
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 15px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-color-pale);
+  transform: scale(1.02);
+}
+
+/* 多巴胺风格标题样式 */
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* 多巴胺风格渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 多巴胺风格容器样式 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 多巴胺风格分隔线 */
+.divider {
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: 2px;
+  margin: 40px 0;
+}
+
+/* 多巴胺风格动画效果 */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 动画类 */
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
 }
 
 /* 认证页面样式 - OiiOii风格 */
@@ -158,7 +293,9 @@ body {
 /* 左侧内容区域 */
 .auth-left {
   flex: 1;
-  background: linear-gradient(135deg, var(--tiffany-blue) 0%, var(--tiffany-blue-dark) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: white;
   display: flex;
   align-items: center;

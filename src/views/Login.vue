@@ -39,9 +39,9 @@ const handleLogin = async () => {
 
 <template>
   <div class="auth-container">
-    <div class="auth-left">
+    <div class="auth-left" style="background-image: url('/images/0_3.png');">
       <div class="auth-left-content">
-        <h1 class="auth-logo">OiiOii</h1>
+        <h1 class="auth-logo">POPOLILI</h1>
         <p class="auth-slogan">Director, we are your professional AI animation agent team.</p>
         <div class="team-roles">
           <div class="role-item">艺术总监</div>

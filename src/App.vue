@@ -6,40 +6,12 @@ const router = useRouter();
 const route = useRoute();
 
 /**
- * 主题切换功能
- */
-const isDarkTheme = ref(false);
-
-/**
- * 初始化主题
+ * 初始化黑色主题
  */
 onMounted(() => {
-  // 从localStorage获取主题偏好，默认为明亮主题
-  const savedTheme = localStorage.getItem('theme');
-  isDarkTheme.value = savedTheme === 'dark';
-  updateTheme();
+  // 始终使用黑色主题，移除主题切换功能
+  localStorage.setItem('theme', 'dark');
 });
-
-/**
- * 更新主题样式
- */
-const updateTheme = () => {
-  if (isDarkTheme.value) {
-    document.documentElement.classList.add('dark-theme');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    document.documentElement.classList.remove('dark-theme');
-    localStorage.setItem('theme', 'light');
-  }
-};
-
-/**
- * 切换主题
- */
-const toggleTheme = () => {
-  isDarkTheme.value = !isDarkTheme.value;
-  updateTheme();
-};
 
 /**
  * 处理登出
@@ -100,17 +72,7 @@ const isLoggedIn = computed(() => {
             </router-link>
           </template>
           
-          <!-- 主题切换按钮 -->
-          <div class="theme-switch-container">
-            <label class="theme-toggle">
-              <input 
-                type="checkbox" 
-                v-model="isDarkTheme" 
-                @change="toggleTheme"
-              >
-              <span class="theme-slider round"></span>
-            </label>
-          </div>
+
           
           <template v-if="isLoggedIn">
             <button 
@@ -196,14 +158,17 @@ const isLoggedIn = computed(() => {
 
 .brand-link {
   font-size: 1.8rem;
-  font-weight: 700;
-  color: #0abab5;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .brand-link:hover {
-  color: #08a09b;
+  transform: scale(1.05);
 }
 
 .navbar-menu {
@@ -223,13 +188,14 @@ const isLoggedIn = computed(() => {
 }
 
 .nav-link:hover {
-  color: var(--tiffany-blue);
-  background-color: var(--tiffany-blue-pale);
+  color: var(--primary-color);
+  background-color: var(--primary-color-pale);
+  transform: scale(1.05);
 }
 
 .nav-link.active {
-  color: var(--tiffany-blue);
-  background-color: var(--tiffany-blue-pale);
+  color: var(--primary-color);
+  background-color: var(--primary-color-pale);
 }
 
 .nav-button {
@@ -245,14 +211,14 @@ const isLoggedIn = computed(() => {
 }
 
 .register-button {
-  background-color: var(--tiffany-blue);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
 }
 
 .register-button:hover {
-  background-color: var(--tiffany-blue-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--primary-color-dark) 0%, var(--secondary-color) 100%);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .logout-button {
@@ -276,10 +242,9 @@ const isLoggedIn = computed(() => {
 /* 主要内容 */
 .main-content {
   flex: 1;
-  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
-  padding: 40px 20px;
+  margin: 0;
+  padding: 0;
 }
 
 /* 页脚 */
@@ -320,8 +285,6 @@ const isLoggedIn = computed(() => {
     font-size: 0.9rem;
   }
   
-  .main-content {
-    padding: 20px 15px;
-  }
+  /* 移除main-content的padding，避免影响全屏背景 */
 }
 </style>
