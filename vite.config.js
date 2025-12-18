@@ -1,13 +1,24 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  // 设置根目录为当前目录
+  root: '.',
+  // 设置基础路径
+  base: '/',
   // 构建优化配置
   build: {
+    // 设置输出目录
+    outDir: 'dist',
     // 启用代码分割
     rollupOptions: {
+      // 设置入口文件
+      input: {
+        main: resolve(__dirname, 'index.html')
+      },
       output: {
         manualChunks: (id) => {
           // 将第三方库分离到独立的 chunk

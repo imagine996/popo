@@ -1,9 +1,11 @@
 name = "popo" # 项目名称
 type = "pages"
-build.command = "npm run build"
+build.command = "npm install && npm run build"
 build.output_dir = "dist"
 build.publish = "dist"
 build.concurrency = 10
+# 设置工作目录
+build.working_directory = "."
 
 # 部署优化
 compatibility_date = "2025-12-01"
