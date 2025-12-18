@@ -13,8 +13,17 @@ export async function onRequest(context) {
 
   // 允许公开访问的路由
   const publicRoutes = [
+    // API路由
     '/api/register',
-    '/api/login'
+    '/api/login',
+    // 前端页面路由
+    '/',
+    '/login',
+    '/register',
+    // 静态资源
+    '/assets/*',
+    '/favicon.ico',
+    '/manifest.json'
   ];
   
   // 检查速率限制（所有路由）
@@ -26,8 +35,20 @@ export async function onRequest(context) {
     return response;
   }
 
+  // 检查是否是公开路由（支持通配符）
+  const isPublicRoute = publicRoutes.some(route => {
+    if (route.includes('*')) {
+      // 处理通配符路由，如 /assets/*
+      const pattern = route.replace(/\*/g, '.*');
+      const regex = new RegExp(`^${pattern}$`);
+      return regex.test(url.pathname);
+    }
+    // 精确匹配路由
+    return route === url.pathname;
+  });
+
   // 如果是公开路由，直接放行
-  if (publicRoutes.includes(url.pathname)) {
+  if (isPublicRoute) {
     let response = await next();
     response = addRateLimitHeaders(response, rateLimitInfo);
     return response;
